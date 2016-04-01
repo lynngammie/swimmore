@@ -8,8 +8,8 @@ swimApp.getInfo = function () {
 	$('#go-swim').on('submit', function (e) {
 		e.preventDefault();
 		swimApp.diff = $('input[name="difficulty"]:checked').val();
-		var bigtime = $('input[name="time"]:checked').val();
-		swimApp.time = parseInt(bigtime) - 4;
+		swimApp.bigtime = $('input[name="time"]:checked').val();
+		swimApp.time = parseInt(swimApp.bigtime) - 4;
 		//always include a warmup which takes 4 minutes, so this value with be the user input minus 4 minutes
 		swimApp.speed = $('input[name="speed"]:checked').val();
 		console.log(swimApp.diff, swimApp.time, swimApp.speed);
@@ -50,29 +50,35 @@ swimApp.getDiff = function (workouts) {
 			// append and get everything on the page here
 		};
 	};
-	var matchedWarmup = warmUp[Math.floor(Math.random() * warmUp.length)];
-	var newMatchedSet = [];
+	swimApp.matchedWarmup = warmUp[Math.floor(Math.random() * warmUp.length)];
+	swimApp.newMatchedSet = [];
 	for (var d = 0; d < matchedSet.length; d++) {
 		var timeTotal = timeList.reduce(function (a, b) {
 			return a + b;
 		}, 0);
 		if (timeTotal < swimApp.time) {
 			var matchedItem = matchedSet[Math.floor(Math.random() * matchedSet.length)];
-			newMatchedSet.push(matchedItem);
+			swimApp.newMatchedSet.push(matchedItem);
 			timeList.push(parseInt(matchedItem.swim_time));
 		};
 	}
 	console.log(timeTotal);
-	console.log(matchedWarmup);
-	console.log(newMatchedSet);
-	swimApp.displayData(newMatchedSet);
+	console.log(swimApp.matchedWarmup);
+	console.log(swimApp.newMatchedSet);
+	swimApp.displayData();
 };
 
-swimApp.displayData = function (data) {
-
-	// var times = parseInt(theWorkout.swim_time);
-	// console.log(times);
-	// var workoutTime = theWorkout.
+swimApp.displayData = function () {
+	// var swimTemplate = $('#swimTemplate').html();
+	// var template = Handlebars.compile(swimTemplate);
+	// var workoutTemplate = template(swimApp.newMatchedSet);
+	// $('.workout').append(workoutTemplate);
+	$('.warmup').append('<h3>' + swimApp.matchedWarmup.workout_name + '</h3>\n<p class="description">' + swimApp.matchedWarmup.workout_description + '</p>\n<p class="total-time">This should take you approximately ' + swimApp.matchedWarmup.swim_time + '</p>');
+	$('.workout-intro').text('This is a ' + swimApp.diff + ' ' + swimApp.bigtime + '-minute workout for you. Time to get to work!');
+	$('.workout').css('display', 'block');
+	for (var x = 0; x <= swimApp.newMatchedSet.length; x++) {
+		$('.workouts').append('<h3>' + swimApp.newMatchedSet[x].workout_name + '</h3>\n<p class="description">' + swimApp.newMatchedSet[x].workout_description + '</p>\n<p class="total-time">This should take you approximately ' + swimApp.newMatchedSet[x].swim_time + '</p>');
+	}
 };
 
 //ajax call to sheetsu, get workouts in the users level of difficulty only AND a warmup

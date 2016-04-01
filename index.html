@@ -4,34 +4,110 @@
 	<meta charset="UTF-8">
 	<title>JavaScript Calculator - Just for Fun</title>
 	<link rel="stylesheet" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=Cantata+One|Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<script id="swimTemplate" type="x-handlebars-template">
+		<div class="workout-list">
+			<h1>{{workout_name}}</h1>
+    	<p>{{workout_description}}</p>
+    	<p>{{time_slow}}</p>
+    	<p>{{swim_time}}</p>
+    </div>
+	</script>
+	<script id="warmupTemplate" type="x-handlebars-template">
+		<div class="warmup">
+			<h1>{{workout_name}}</h1>
+    	<p>{{workout_description}}</p>
+    	<p>{{time_slow}}</p>
+    	<p>{{swim_time}}</p>
+    </div>
+	</script>
 
 	<div class="wrapper">
+	<div class="overlay">
 		
 		<header>
-
-			<h1>Swim More</h1>
+			<p class="intro">You know you should really</p>
+			<img class="swim" src="assets/swim.svg" alt="Swim">
+			<h1>More</h1>
 			
 		</header>
 
 		<section class="questions">
-			
+			<p class="question-text">Swim workouts can be boring. But they don't have to be! Choose some options below to get a custom swim workout with a little somethin' somethin'.</p>
 			<form id="go-swim">
+				<p class="question-text">How HARD do you want the workout to be?</p>
 				<div class="difficulty">
-					<input type="radio" name="difficulty" value="easy">
-					<input type="radio" name="difficulty" value="medium">
-					<input type="radio" name="difficulty" value="difficult">
+					<div class="diff-button">
+						<input type="radio" name="difficulty" id="easy" value="easy">
+						<label for="easy">
+							<img src="assets/cap.png" alt="woman with flower bathing cap">
+							<p class="label-text">Just Chillin'</p>
+						</label>
+					</div>
+					<div class="diff-button">
+						<input type="radio" name="difficulty" id="medium" value="medium">
+						<label for="medium">
+							<img src="assets/diver.png" alt="">
+							<p class="label-text">I Wanna Sweat</p>
+						</label>
+					</div>
+					<div class="diff-button">
+						<input type="radio" name="difficulty" id="difficult" value="difficult">
+						<label for="difficult">
+							<img src="assets/phelps.png" alt="">
+							<p class="label-text">Olympic-bound</p>
+						</label>
+					</div>
 				</div>
+				<p class="question-text">How much TIME do you have?</p>
 				<div class="time">
-					<input type="radio" name="time" value="30">
-					<input type="radio" name="time" value="45">
-					<input type="radio" name="time" value="60">
+					<div class="time-button">
+						<input type="radio" name="time" id="thirty" value="30">
+						<label for="thirty">
+							<img src="assets/clock.png" alt="">
+							<p class="label-text">Here for a good time, not a long time (30 minutes)</p>
+						</label>
+					</div>
+					<div class="time-button">
+						<input type="radio" name="time" id="fourtyfive" value="45">
+						<label for="fourtyfive">
+							<img src="assets/watch.png" alt="">
+							<p class="label-text">I can stay awhile (45 minutes)</p>
+						</label>
+					</div>
+					<div class="time-button">
+						<input type="radio" name="time" id="sixty" value="60">
+						<label for="sixty">
+							<img src="assets/stopwatch.png" alt="">
+							<p class="label-text">In it for the long haul (60 minutes)</p>
+						</label>
+					</div>
 				</div>
+				<p class="question-text">How FAST are you?</p>
 				<div class="speed">
-					<input type="radio" name="speed" value="slow">
-					<input type="radio" name="speed" value="medium">
-					<input type="radio" name="speed" value="fast">
+					<div class="speed-button">
+						<input type="radio" name="speed" id="spslow" value="slow">
+						<label for="spslow">
+							<img src="assets/puffer-fish.png" alt="">
+							<p class="label-text">Going nowhere fast</p>
+						</label>
+					</div>
+					<div class="speed-button">
+						<input type="radio" name="speed" id="spmedium" value="medium">
+						<label for="spmedium">
+							<img src="assets/beaver.png" alt="">
+							<p class="label-text">I'm pretty speedy</p>
+						</label>
+					</div>
+					<div class="speed-button">
+						<input type="radio" name="speed" id="spfast" value="fast">
+						<label for="spfast">
+							<p class="label-text">Practically Phelps-ian</p>
+							<img src="assets/dolphin.png" alt="">
+						</label>
+					</div>
 				</div>
 				<div class="submit">
 					<input type="submit">
@@ -42,7 +118,14 @@
 
 		</section>
 		<section class="workout">
-			
+			<div class="warmup">
+				<p class="intro">It's important to warm up before you start your workout. Here's a quick warmup for you:</p>
+			</div>
+			<div class="workouts">
+				<p class="intro workout-intro"></p>
+				<!-- <div class="single-workout"></div> -->
+				
+			</div>
 
 		</section>
 
@@ -51,11 +134,12 @@
 
 
 
-
+	</div>
 	</div>
 	
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 	<script src="scripts.js"></script>
 </body>
 </html>

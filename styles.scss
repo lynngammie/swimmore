@@ -5,6 +5,73 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+$mainFont:'Cantata One', serif;
+$sansFont:'Montserrat', sans-serif;
+
+html {
+  font-size:62.5%;
+  font-family:$mainFont;
+  color:white;
+}
+
+img {
+  max-width:100%;
+}
+
+.wrapper {
+  background-image: url(assets/palm.jpg);
+  background-size:cover;
+  background-attachment: fixed;
+}
+
+.overlay {
+  background-color: rgba(0,0,0,0.4);
+}
+
+header {
+  height: 100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.swim {
+  width:60%;
+}
+
+
+h1 {
+  font-size:6rem;
+  margin-top:0;
+}
+
+h1, .intro {
+  text-transform: uppercase;
+  letter-spacing:2px;
+  font-family:$sansFont;
+}
+
+.intro {
+  font-size:2rem;
+}
+
+.workout, .questions, .footer {
+  max-width:1200px;
+  margin:0 auto;
+}
+
 section.workout {
   display:none;
 }
+
+//questions section
+
+.time, .speed, .difficulty {
+  display:flex;
+}
+
+.question-text {
+  font-size: 1.6rem;
+}
+
